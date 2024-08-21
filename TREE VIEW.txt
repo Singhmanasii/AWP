@@ -1,0 +1,72 @@
+aspx-
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Tree_View.aspx.cs" Inherits="Tree_View.Tree_View" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>TreeView Example</title>
+    <style>
+        #treeContainer {
+            display: none; /* Initially hide the TreeView */
+        }
+    </style>
+    <script type="text/javascript">
+        function showTree() {
+            // Make the TreeView visible
+            document.getElementById("treeContainer").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <!-- Button to reveal TreeView -->
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="SHOW TREE" />
+        </div>
+        <!-- Container to hold TreeView, initially hidden -->
+        <div id="treeContainer">
+            <asp:TreeView ID="TreeView1" runat="server">
+                <Nodes>
+                    <asp:TreeNode Checked="True" Text="BSC IT" Value="BSC IT">
+                        <asp:TreeNode Checked="True" Text="FY BSC IT" Value="FY BSC IT"></asp:TreeNode>
+                        <asp:TreeNode Checked="True" Text="SY BSC IT" Value="SY BSC IT"></asp:TreeNode>
+                        <asp:TreeNode Checked="True" Text="TY BSC IT" Value="TY BSC IT"></asp:TreeNode>
+                    </asp:TreeNode>
+                    <asp:TreeNode Checked="True" Text="BSC CS" Value="BSC CS">
+                        <asp:TreeNode Checked="True" Text="FY BSC CS" Value="FY BSC CS"></asp:TreeNode>
+                        <asp:TreeNode Checked="True" Text="SY BSC CS" Value="SY BSC CS"></asp:TreeNode>
+                        <asp:TreeNode Checked="True" Text="TY BSC CS" Value="TY BSC CS"></asp:TreeNode>
+                    </asp:TreeNode>
+                    <asp:TreeNode Checked="True" Text="BSC DS" Value="BSC DS">
+                        <asp:TreeNode Checked="True" Text="FY BSC DS" Value="FY BSC DS"></asp:TreeNode>
+                        <asp:TreeNode Checked="True" Text="SY BSC DS" Value="SY BSC DS"></asp:TreeNode>
+                        <asp:TreeNode Checked="True" Text="TY BSC DS" Value="TY BSC DS"></asp:TreeNode>
+                    </asp:TreeNode>
+                </Nodes>
+            </asp:TreeView>
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+using System;
+using System.Web.UI;
+
+namespace Tree_View
+{
+    public partial class Tree_View : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Code that runs when the page is loaded.
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            // Make the TreeView visible using JavaScript.
+            ScriptManager.RegisterStartupScript(this, GetType(), "showTree", "showTree();", true);
+        }
+    }
+}
