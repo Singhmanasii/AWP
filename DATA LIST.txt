@@ -1,0 +1,77 @@
+aspx code-
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="data_list.aspx.cs" Inherits="data_list.data_list" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Student Details</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:DataList ID="DataList1" runat="server" DataSourceID="XmlDataSource1">
+                <ItemTemplate>
+                    <div style="border-bottom: 1px solid #ddd; padding: 10px;">
+                        <strong>Student ID:</strong> <%# XPath("sid") %><br />
+                        <strong>Name:</strong> <%# XPath("sname") %><br />
+                        <strong>Class:</strong> <%# XPath("sclass") %>
+                    </div>
+                </ItemTemplate>
+            </asp:DataList>
+            
+            <!-- XmlDataSource that loads data from the stdetails.xml file -->
+            <asp:XmlDataSource ID="XmlDataSource1" runat="server" 
+                               DataFile="~/stdetails.xml" 
+                               XPath="studentdetail/student">
+            </asp:XmlDataSource>
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs code-
+using System;
+using System.Web.UI;
+
+namespace data_list
+{
+    public partial class data_list : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                // Data binding happens automatically via XmlDataSource,
+                // so no manual data binding is necessary here.
+                // However, if you need to perform any additional setup, you can do it here.
+            }
+        }
+    }
+}
+
+xml code-
+<?xml version="1.0" encoding="utf-8"?>
+<studentdetail>
+	<student>
+		<sid>1</sid>
+		<sname>Manasi</sname>
+		<sclass>TYIT</sclass>
+	</student>
+	<student>
+		<sid>2</sid>
+		<sname>Priya</sname>
+		<sclass>TYIT</sclass>
+	</student>
+	<student>
+		<sid>3</sid>
+		<sname>Sneha</sname>
+		<sclass>TYCS</sclass>
+	</student>
+	<student>
+		<sid>4</sid>
+		<sname>Seema</sname>
+		<sclass>TYCS</sclass>
+	</student>
+</studentdetail>
+
