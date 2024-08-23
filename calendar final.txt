@@ -1,43 +1,10 @@
-aspx-
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="calendar.aspx.cs" Inherits="calender.calendar" %>
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Calendar Example</title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:Calendar ID="Calendar1" runat="server" 
-                          OnDayRender="Calendar1_DayRender" 
-                          OnSelectionChanged="Calendar1_SelectionChanged">
-            </asp:Calendar>
-            <br />
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-            <br />
-            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-            <br />
-            <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-            <br />
-            <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-            <br />
-            <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-            <br />
-            <asp:Button ID="Button1" runat="server" Text="Show Dates" OnClick="Button1_Click" />
-            <asp:Button ID="Button2" runat="server" Text="Clear Dates" OnClick="Button2_Click" />
-        </div>
-    </form>
-</body>
-</html>
-aspx.cs-
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace calender
+namespace Pract_3b_calender
 {
-    public partial class calendar : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -96,3 +63,37 @@ namespace calender
         }
     }
 }
+
+
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="WebForm1.aspx.cs" Inherits="Pract_3b_calender.WebForm1" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Calendar Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Calendar ID="Calendar1" runat="server" 
+                          OnDayRender="Calendar1_DayRender" 
+                          OnSelectionChanged="Calendar1_SelectionChanged">
+            </asp:Calendar>
+            <br />
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+            <br />
+            <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+            <br />
+            <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+            <br />
+            <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
+            <br />
+            <asp:Button ID="Button1" runat="server" Text="Show Dates" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" Text="Clear Dates" OnClick="Button2_Click" />
+        </div>
+    </form>
+</body>
+</html>
