@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<studentdetail>
+	<student>
+		<sid>1</sid>
+		<sname>Manasi</sname>
+		<sclass>TYIT</sclass>
+	</student>
+	<student>
+		<sid>2</sid>
+		<sname>Priya</sname>
+		<sclass>TYIT</sclass>
+	</student>
+	<student>
+		<sid>3</sid>
+		<sname>Harsh</sname>
+		<sclass>TYCS</sclass>
+	</student>
+	<student>
+		<sid>4</sid>
+		<sname>Kanha</sname>
+		<sclass>TYCS</sclass>
+	</student>
+</studentdetail>

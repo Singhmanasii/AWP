@@ -30,13 +30,6 @@ aspx code-
 </body>
 </html>
 
-aspx addition code for students - (<ItemTemplate>
-    <div style="border-bottom: 1px solid #ddd; padding: 10px;">
-        <strong>Student ID:</strong> <%# XPath("sid") %><br />
-        <strong>Name:</strong> <%# XPath("sname") %><br />
-        <strong>Class:</strong> <%# XPath("sclass") %>
-    </div>
-</ItemTemplate>)
 aspx.cs code-
 using System;
 using System.Web.UI;
