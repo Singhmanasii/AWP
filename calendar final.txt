@@ -1,5 +1,5 @@
 aspx-
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="WebForm1.aspx.cs" Inherits="Pract_3b_calender.WebForm1" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="calendar.aspx.cs" Inherits="calender.calendar" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +35,7 @@ using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Pract_3b_calender
+namespace calender
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
