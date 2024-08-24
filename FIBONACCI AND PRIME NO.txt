@@ -1,0 +1,115 @@
+aspx -
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pract_1c.aspx.cs" Inherits="pract_1c.pract_1c" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Fibonacci and Prime Number Checker</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Fibonacci Series Generator </h2>
+            <asp:Label ID="lblFibonacci" runat="server" Text="Enter number of terms:"></asp:Label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="txtFibonacci" runat="server"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+            <br />
+            <br />
+&nbsp;
+            <asp:Button ID="btnGenerateFibonacci" runat="server" Text="Generate Fibonacci" OnClick="btnGenerateFibonacci_Click" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="FibonacciResult" runat="server"></asp:Label>
+            <br /><br />
+            <h2>Prime Number Tester</h2>
+            <asp:Label ID="lblPrime" runat="server" Text="Enter a number to test:"></asp:Label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="txtPrime" runat="server"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+            <br />
+&nbsp;<asp:Button ID="btnTestPrime" runat="server" Text="Test Prime" OnClick="btnTestPrime_Click" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="PrimeResult" runat="server"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+using System;
+using System.Text;
+using System.Web.UI;
+
+namespace pract_1c
+{
+    public partial class pract_1c : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Optionally handle page load logic here
+        }
+
+        protected void btnGenerateFibonacci_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int terms = Convert.ToInt32(txtFibonacci.Text);
+                StringBuilder result = new StringBuilder();
+
+                int a = 0, b = 1;
+                result.Append(a + " ");
+
+                for (int i = 1; i < terms; i++)
+                {
+                    result.Append(b + " ");
+                    int temp = a + b;
+                    a = b;
+                    b = temp;
+                }
+
+                FibonacciResult.Text = "Fibonacci Series: " + result.ToString();
+            }
+            catch (FormatException)
+            {
+                FibonacciResult.Text = "Please enter a valid number.";
+            }
+        }
+
+        protected void btnTestPrime_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int number = Convert.ToInt32(txtPrime.Text);
+
+                if (IsPrime(number))
+                {
+                    PrimeResult.Text = $"{number} is a prime number.";
+                }
+                else
+                {
+                    PrimeResult.Text = $"{number} is not a prime number.";
+                }
+            }
+            catch (FormatException)
+            {
+                PrimeResult.Text = "Please enter a valid number.";
+            }
+        }
+
+        private bool IsPrime(int number)
+        {
+            if (number <= 1) return false;
+            if (number == 2) return true;
+            if (number % 2 == 0) return false;
+
+            for (int i = 3; i <= Math.Sqrt(number); i += 2)
+            {
+                if (number % i == 0) return false;
+            }
+
+            return true;
+        }
+    }
+}
