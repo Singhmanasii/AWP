@@ -1,5 +1,0 @@
-﻿Build started at 14:58...
-1>------ Build started: Project: Pract_3b_calender, Configuration: Debug Any CPU ------
-1>  Pract_3b_calender -> C:\Users\student\source\repos\Pract_3b_calender\bin\Pract_3b_calender.dll
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
-========== Build completed at 14:58 and took 00.274 seconds ==========
