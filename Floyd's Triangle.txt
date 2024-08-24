@@ -1,0 +1,82 @@
+aspx-
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pract_1b.aspx.cs" Inherits="pract_1b.pract_1b" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Floyd's Triangle</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Generate Floyd's Triangle</h2>
+            <asp:Label ID="Label1" runat="server" Text="Enter number of rows:"></asp:Label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="txtRows" runat="server"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+            <br />
+&nbsp;&nbsp;
+            <asp:Button ID="btnGenerate" runat="server" Text="Generate" OnClick="btnGenerate_Click" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+            <br />
+&nbsp;&nbsp;
+            <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace pract_1b
+{
+    public partial class pract_1b : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnGenerate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get the number of rows from the user input
+                int rows = Convert.ToInt32(txtRows.Text);
+
+                // Initialize the starting number
+                int number = 1;
+
+                // StringBuilder to accumulate the output
+                StringBuilder sb = new StringBuilder();
+
+                // Generate Floyd's Triangle
+                for (int i = 1; i <= rows; i++)
+                {
+                    for (int j = 1; j <= i; j++)
+                    {
+                        sb.Append(number + " ");
+                        number++;
+                    }
+                    sb.Append("<br />"); // New line for each row
+                }
+
+                // Display the result
+                lblResult.Text = sb.ToString();
+            }
+            catch (FormatException)
+            {
+                lblResult.Text = "Please enter a valid number.";
+            }
+        }
+    }
+}
+        
