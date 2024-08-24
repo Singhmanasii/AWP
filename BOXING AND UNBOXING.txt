@@ -1,0 +1,71 @@
+aspx-
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pract_2a.aspx.cs" Inherits="pract_2a.pract_2a" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Boxing and Unboxing Demonstration</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Boxing and Unboxing Demonstration</h2>
+            
+            <asp:Label ID="lblInput" runat="server" Text="Enter an integer value:"></asp:Label>
+            <asp:TextBox ID="txtInput" runat="server"></asp:TextBox>
+            <asp:Button ID="btnDemonstrate" runat="server" Text="Demonstrate" OnClick="btnDemonstrate_Click" />
+            
+            <br /><br />
+            <asp:Label ID="lblBoxing" runat="server" Text=""></asp:Label>
+            <br /><br />
+            <asp:Label ID="lblUnboxing" runat="server" Text=""></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+using System;
+using System.Web.UI;
+
+namespace pract_2a
+{
+    public partial class pract_2a : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Optionally handle page load logic here
+        }
+
+        protected void btnDemonstrate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Retrieve the integer input from the TextBox
+                int originalValue = Convert.ToInt32(txtInput.Text);
+
+                // Boxing: Convert the value type to object type
+                object boxedValue = originalValue;
+
+                // Modify the boxed value indirectly
+                // Note: Direct modification is not possible as boxedValue is an object reference
+                // and we cannot modify the value inside the object directly
+                int modifiedValue = originalValue + 10; // New value to simulate modification
+
+                // Unboxing: Convert the object type back to value type
+                int unboxedValue = (int)boxedValue;
+
+                // Display results
+                lblBoxing.Text = $"Original Value: {originalValue}<br />" +
+                                 $"Boxed Value (as object): {boxedValue}<br />" +
+                                 $"Modified Value (not affecting boxedValue): {modifiedValue}<br />";
+                lblUnboxing.Text = $"Unboxed Value: {unboxedValue} (This is the value retrieved from boxedValue)";
+            }
+            catch (FormatException)
+            {
+                lblBoxing.Text = "Please enter a valid integer.";
+                lblUnboxing.Text = "";
+            }
+        }
+    }
+}
