@@ -1,0 +1,84 @@
+aspx-
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pract_1a.aspx.cs" Inherits="pract_1a.pract_1a" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Arithmetic Operations</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            ARITHMETIC OPERATIONS
+        </div>
+        <p>
+            <asp:Label ID="Label1" runat="server" Text="Enter First Number:"></asp:Label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="Label2" runat="server" Text="Enter Second Number:"></asp:Label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+        </p>
+        <p>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Result" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Reset" />
+        </p>
+    </form>
+</body>
+</html>
+
+
+aspx.cs -
+using System;
+using System.Web.UI;
+
+namespace pract_1a
+{
+    public partial class pract_1a : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Optionally handle page load logic here
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get the input numbers
+                int n1 = Convert.ToInt32(TextBox1.Text);
+                int n2 = Convert.ToInt32(TextBox2.Text);
+
+                // Perform operations
+                double addition = n1 + n2;
+                double subtraction = n1 - n2;
+                double multiplication = n1 * n2;
+                double division = n2 != 0 ? (double)n1 / n2 : double.NaN;
+
+                // Display results
+                Label3.Text = $"Addition: {addition}<br />" +
+                              $"Subtraction: {subtraction}<br />" +
+                              $"Multiplication: {multiplication}<br />" +
+                              $"Division: {(double.IsNaN(division) ? "Cannot divide by zero" : division.ToString())}";
+            }
+            catch (FormatException)
+            {
+                Label3.Text = "Please enter valid numbers.";
+            }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            // Reset the TextBoxes and Label
+            TextBox1.Text = "";
+            TextBox2.Text = "";
+            Label3.Text = "";
+        }
+    }
+}
