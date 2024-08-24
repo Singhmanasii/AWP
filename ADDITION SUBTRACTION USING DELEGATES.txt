@@ -1,0 +1,111 @@
+aspx-
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Practical_2b.aspx.cs" Inherits="Practical_2b.Practical_2b" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Delegate Operations</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Perform Addition and Subtraction Using Delegates</h2>
+            
+            <asp:Label ID="lblFirstNumber" runat="server" Text="Enter First Number:"></asp:Label>
+            <asp:TextBox ID="txtFirstNumber" runat="server"></asp:TextBox>
+            <br /><br />
+            <asp:Label ID="lblSecondNumber" runat="server" Text="Enter Second Number:"></asp:Label>
+            <asp:TextBox ID="txtSecondNumber" runat="server"></asp:TextBox>
+            <br /><br />
+            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" />
+            <asp:Button ID="btnSubtract" runat="server" Text="Subtract" OnClick="btnSubtract_Click" />
+            <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" />
+            <br /><br />
+            <asp:Label ID="AdditionResult" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="SubtractionResult" runat="server" Text=""></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+using System;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Practical_2b
+{
+    public partial class Practical_2b : System.Web.UI.Page
+    {
+        // Define delegate type for operations
+        public delegate double Operation(double x, double y);
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Optionally handle page load logic here
+        }
+
+        // Method to perform addition
+        private double Add(double x, double y)
+        {
+            return x + y;
+        }
+
+        // Method to perform subtraction
+        private double Subtract(double x, double y)
+        {
+            return x - y;
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            PerformOperation(Add, AdditionResult);
+        }
+
+        protected void btnSubtract_Click(object sender, EventArgs e)
+        {
+            PerformOperation(Subtract, SubtractionResult);
+        }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            // Clear TextBoxes and result labels
+            txtFirstNumber.Text = "";
+            txtSecondNumber.Text = "";
+            AdditionResult.Text = "";
+            SubtractionResult.Text = "";
+        }
+
+        private void PerformOperation(Operation operation, Label resultLabel)
+        {
+            try
+            {
+                // Retrieve input numbers from TextBoxes
+                double num1 = Convert.ToDouble(txtFirstNumber.Text);
+                double num2 = Convert.ToDouble(txtSecondNumber.Text);
+
+                // Perform the operation
+                double result = operation(num1, num2);
+
+                // Display the result in the appropriate label
+                if (resultLabel != null)
+                {
+                    resultLabel.Text = $"Result: {result}";
+                }
+            }
+            catch (FormatException)
+            {
+                // Display error message if input is not valid
+                if (resultLabel == AdditionResult)
+                {
+                    AdditionResult.Text = "Please enter valid numbers.";
+                }
+                else if (resultLabel == SubtractionResult)
+                {
+                    SubtractionResult.Text = "Please enter valid numbers.";
+                }
+            }
+        }
+    }
+}
