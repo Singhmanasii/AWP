@@ -1,0 +1,34 @@
+aspx -
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="practical_4c.aspx.cs" Inherits="practical_4c.practical_4c" %>
+<%@ Register TagPrefix="stfooter" TagName="footer" Src="~/practical_4c.ascx" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Welcome to ASP.NET"></asp:Label>
+            <br />
+            <br />
+        </div>
+        <!-- Footer User Control -->
+        <stfooter:footer ID="practical_4c" runat="server" />
+    </form>
+</body>
+</html>
+
+
+ascx-
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="practical_4c.ascx.cs" Inherits="practical_4c.WebUserControl1" %>
+
+<table>
+    <tr>
+        <td align="center">Advanced Web Programming (Manasi)</td>
+    </tr>
+</table>
+
+(keep both cs pages as it is)
