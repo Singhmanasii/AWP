@@ -1,0 +1,126 @@
+Webform 1 aspx-
+
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="pract_5b.WebForm1" Theme="Skin1"%>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Label ID="Label1" runat="server" SkinID="lbl" Text="Name "></asp:Label>
+    <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
+    <br />
+    <asp:Button ID="Button1" runat="server" Text="Submit Date" OnClick="Button1_Click" />
+    <br />
+    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/WebForm2.aspx">Next</asp:HyperLink>
+</asp:Content>
+
+Webform 1 aspx.cs-
+
+using System;
+
+namespace pract_5b
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        // This is the event handler for when the user selects a new date on the calendar.
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            // You can handle the date selection change here if needed.
+            string selectedDate = Calendar1.SelectedDate.ToShortDateString();
+            // You could, for example, display this date in a label or process it further.
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            // Capture the selected date from the Calendar control
+            string selectedDate = Calendar1.SelectedDate.ToShortDateString();
+
+            // Store the selected date in a session variable to pass it to WebForm2
+            Session["SelectedDate"] = selectedDate;
+
+            // Redirect to WebForm2
+            Response.Redirect("WebForm2.aspx");
+        }
+    }
+}
+
+Webform2 aspx-
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="pract_5b.WebForm2" Theme="Skin1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Label ID="Label1" SkinID="lbl" runat="server" Text="Enter Your Name:"></asp:Label>
+&nbsp;<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <br />
+    <asp:Button ID="Button1" runat="server" Text="Submit Name" OnClick="Button1_Click" />
+    <br /><br />
+    <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+</asp:Content>
+
+Webform2 aspx cs-
+using System;
+
+namespace pract_5b
+{
+    public partial class WebForm2 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                // Retrieve the selected date from the session and display it
+                if (Session["SelectedDate"] != null)
+                {
+                    Label2.Text = "Selected Date: " + Session["SelectedDate"].ToString();
+                }
+                else
+                {
+                    Label2.Text = "No date was selected.";
+                }
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            // Display the entered name
+            Label2.Text += "<br/> Name: " + TextBox1.Text;
+        }
+    }
+}
+
+skin file-
+
+<asp:Label runat="server" SkinId="lbl" backcolor=white/>
+
+stylesheet1.css-
+
+body {
+    background-color:lightpink;
+    font:italic;
+}
+
+site1.master-
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="pract_5b.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <link href="StyleSheet1.css" rel="stylesheet" type="text/css" />
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
