@@ -1,0 +1,110 @@
+aspx -
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pract_2c.aspx.cs" Inherits="pract_2c.pract_2c" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Notification System</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Send Notification</h2>
+            
+            <asp:Label ID="lblMessage" runat="server" Text="Enter Message:"></asp:Label>
+            <asp:TextBox ID="txtMessage" runat="server"></asp:TextBox>
+            <br /><br />
+
+            <asp:RadioButton ID="rbEmail" runat="server" GroupName="NotificationType" Text="Email" Checked="True" />
+            <asp:RadioButton ID="rbSMS" runat="server" GroupName="NotificationType" Text="SMS" />
+            <br /><br />
+
+            <asp:Button ID="btnSend" runat="server" Text="Send Notification" OnClick="btnSend_Click" />
+            <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" />
+            <br /><br />
+
+            <asp:Label ID="Result" runat="server"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services.Description;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace pract_2c
+{
+    // Define the interface
+    public interface INotification
+    {
+        void Send(string message, Label resultLabel);
+    }
+
+    // Implement Email Notification
+    public class EmailNotification : INotification
+    {
+        public void Send(string message, Label resultLabel)
+        {
+            // For demonstration, just update the label
+            resultLabel.Text = $"Email sent with message: {message}";
+        }
+    }
+
+    // Implement SMS Notification
+    public class SMSNotification : INotification
+    {
+        public void Send(string message, Label resultLabel)
+        {
+            // For demonstration, just update the label
+            resultLabel.Text = $"SMS sent with message: {message}";
+        }
+    }
+
+    public partial class pract_2c : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Optionally handle page load logic here
+        }
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            // Determine which type of notification to send
+            INotification notification = null;
+            if (rbEmail.Checked)
+            {
+                notification = new EmailNotification();
+            }
+            else if (rbSMS.Checked)
+            {
+                notification = new SMSNotification();
+            }
+
+            // Send the notification
+            if (notification != null)
+            {
+                string message = txtMessage.Text;
+                notification.Send(message, Result);
+            }
+            else
+            {
+                Result.Text = "Please select a notification type.";
+            }
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            // Clear TextBox and RadioButton selections
+            txtMessage.Text = "";
+            rbEmail.Checked = true; // Optional: Reset to default
+            rbSMS.Checked = false;
+            Result.Text = "";
+        }
+    }
+}
