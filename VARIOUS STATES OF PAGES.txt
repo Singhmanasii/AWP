@@ -1,0 +1,129 @@
+main aspx-
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pract_5c(1).aspx.cs" Inherits="pract_5c.pract_5c_1_" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:HiddenField ID="HiddenField1" runat="server" Value="2" />
+            <br />
+        </div>
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+        <br />
+        <br />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="View State" />
+        <br />
+        <br />
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Hidden Field" />
+        <br />
+        <br />
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <br />
+        <br />
+        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Cookies" />
+    </form>
+</body>
+</html>
+
+
+main aspx.cs-
+
+using System;
+using System.Web;
+
+namespace pract_5c
+{
+    public partial class pract_5c_1_ : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                if (ViewState["count"] != null)
+                {
+                    int ViewStateVal = Convert.ToInt32(ViewState["count"]) + 1;
+                    Label2.Text = "View State :" + ViewStateVal.ToString();
+                    ViewState["count"] = ViewStateVal.ToString();
+                }
+                else
+                {
+                    ViewState["count"] = "1";
+                }
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Label1.Text = ViewState["count"].ToString();
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            if (HiddenField1.Value != null)
+            {
+                int val = Convert.ToInt32(HiddenField1.Value) + 1;
+                HiddenField1.Value = val.ToString();
+
+                // Update Label2 to show the new hidden field value
+                Label2.Text = "Hidden Field Value: " + HiddenField1.Value;
+            }
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            HttpCookie h = new HttpCookie("name");
+            h.Value = TextBox1.Text;
+            Response.Cookies.Add(h);
+            Response.Redirect("WebForm1.aspx");
+        }
+    }
+}
+
+
+webform1.aspx-
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="pract_5c.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+        </div>
+    </form>
+</body>
+</html>
+
+webform1 aspx.cs-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace pract_5c
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Request.Cookies["name"] != null)
+                Response.Write("Welcome:" + Request.Cookies["name"].Value);
+        }
+    }
+}
