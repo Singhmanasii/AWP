@@ -92,6 +92,7 @@ namespace Pract_5b
 }
 
 skin file-
+(Skin1.skin)-
 
 <asp:Label runat="server" SkinId="lbl" backcolor=white/>
 
