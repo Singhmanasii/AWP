@@ -1,6 +1,6 @@
 main aspx-
 
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pract_5c(1).aspx.cs" Inherits="pract_5c.pract_5c_1_" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pract_5c.aspx.cs" Inherits="pract_5c.pract_5c" %>
 
 <!DOCTYPE html>
 
@@ -42,7 +42,7 @@ using System.Web;
 
 namespace pract_5c
 {
-    public partial class pract_5c_1_ : System.Web.UI.Page
+    public partial class pract_5c : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
