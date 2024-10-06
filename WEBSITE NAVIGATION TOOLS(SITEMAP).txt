@@ -1,6 +1,6 @@
 main aspx-
 
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Pract_5a.aspx.cs" Inherits="pract_5a.Pract_5a" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Pract_5a.aspx.cs" Inherits="Pract_5a.Pract_5a" %>
 
 <!DOCTYPE html>
 
@@ -33,7 +33,7 @@ aspx.cs-
 using System;
 using System.Web.UI;
 
-namespace pract_5a
+namespace Pract_5a
 {
     public partial class Pract_5a : Page
     {
@@ -45,7 +45,7 @@ namespace pract_5a
 }
 
 webform1 aspx-
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="pract_5a.WebForm1" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Pract_5a.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -70,7 +70,7 @@ webform1 aspx.cs-
 using System;
 using System.Web.UI;
 
-namespace pract_5a
+namespace Pract_5a
 {
     public partial class WebForm1 : Page
     {
@@ -83,7 +83,7 @@ namespace pract_5a
 
 webform2 aspx-
 
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="pract_5a.WebForm2" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="Pract_5a.WebForm2" %>
 
 <!DOCTYPE html>
 
@@ -107,7 +107,7 @@ webform2 aspx.cs-
 using System;
 using System.Web.UI;
 
-namespace pract_5a
+namespace Pract_5a
 {
     public partial class WebForm2 : Page
     {
