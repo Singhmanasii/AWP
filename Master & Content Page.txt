@@ -1,6 +1,6 @@
 Webform 1 aspx-
 
-<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="pract_5b.WebForm1" Theme="Skin1"%>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Pract_5b.WebForm1" Theme="Skin1"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -16,7 +16,7 @@ Webform 1 aspx.cs-
 
 using System;
 
-namespace pract_5b
+namespace Pract_5b
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
@@ -48,7 +48,7 @@ namespace pract_5b
 }
 
 Webform2 aspx-
-<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="pract_5b.WebForm2" Theme="Skin1" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="Pract_5b.WebForm2" Theme="Skin1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -63,7 +63,7 @@ Webform2 aspx-
 Webform2 aspx cs-
 using System;
 
-namespace pract_5b
+namespace Pract_5b
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
@@ -104,7 +104,7 @@ body {
 
 site1.master-
 
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="pract_5b.Site1" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Pract_5b.Site1" %>
 
 <!DOCTYPE html>
 
