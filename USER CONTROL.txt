@@ -23,7 +23,7 @@ aspx -
 
 
 ascx-
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="practical_4c.ascx.cs" Inherits="practical_4c.WebUserControl1" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="practical_4c.ascx.cs" Inherits="practical_4c.practical_4c" %>
 
 <table>
     <tr>
