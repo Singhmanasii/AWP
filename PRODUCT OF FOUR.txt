@@ -1,0 +1,73 @@
+aspx-
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="productof4.aspx.cs" Inherits="productof4.productof4" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Multiplication of Four Numbers</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Multiplication of Four Numbers</h2>
+            <asp:Label ID="Label1" runat="server" Text="Enter number 1: "></asp:Label>
+            <asp:TextBox ID="txt_n1" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="Enter number 2: "></asp:Label>
+            <asp:TextBox ID="txt_n2" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="Label3" runat="server" Text="Enter number 3: "></asp:Label>
+            <asp:TextBox ID="txt_n3" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="Label4" runat="server" Text="Enter number 4: "></asp:Label>
+            <asp:TextBox ID="txt_n4" runat="server"></asp:TextBox>
+            <br /><br />
+            <asp:Button ID="Button1" runat="server" Text="Multiply" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" Text="Clear" OnClick="Button2_Click" />
+            <br /><br />
+            <asp:Label ID="lbl_res" runat="server" Text=""></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs -
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace productof4
+{
+    public partial class productof4 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            int n1 = Convert.ToInt32(txt_n1.Text);
+            int n2 = Convert.ToInt32(txt_n2.Text);
+            int n3 = Convert.ToInt32(txt_n3.Text);
+            int n4 = Convert.ToInt32(txt_n4.Text);
+            int res;
+            res = n1 * n2 * n3 * n4;
+            lbl_res.Text = "Multiplication is " + Convert.ToString(res);
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            txt_n1.Text = "";
+            txt_n2.Text = "";
+            txt_n3.Text = "";
+            txt_n4.Text = "";
+            lbl_res.Text = "";
+        }
+    }
+}

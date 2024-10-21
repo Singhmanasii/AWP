@@ -1,0 +1,158 @@
+aspx-
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pract_1d.aspx.cs" Inherits="Pract_1d.Pract_1d" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Pract_1d - Various Operations</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Various Operations</h2>
+            
+            <!-- Fibonacci Series -->
+            <h3>Fibonacci Series</h3>
+            <asp:Label ID="Label1" runat="server" Text="Enter the number of terms: "></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Button ID="Button1" runat="server" Text="Generate Fibonacci" OnClick="Button1_Click" />
+            <br /><br />
+            <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
+            <br />
+            <h3>Prime Number Check</h3>
+            <asp:Label ID="Label2" runat="server" Text="Enter a number: "></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:Button ID="Button2" runat="server" Text="Check Prime" OnClick="Button2_Click" />
+            <br /><br />
+            <asp:Label ID="Label7" runat="server" Text=""></asp:Label>
+            <br />
+            <h3>Reverse of a Number</h3>
+            <asp:Label ID="Label3" runat="server" Text="Enter a number: "></asp:Label>
+            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <asp:Button ID="Button3" runat="server" Text="Reverse" OnClick="Button3_Click" />
+            <br /><br />
+            <asp:Label ID="Label8" runat="server" Text=""></asp:Label>
+            <br />
+            <h3>Sum of Digits</h3>
+            <asp:Label ID="Label4" runat="server" Text="Enter a number: "></asp:Label>
+            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+            <asp:Button ID="Button4" runat="server" Text="Calculate Sum of Digits" OnClick="Button4_Click" />
+            <br /><br />
+            <asp:Label ID="Label9" runat="server" Text=""></asp:Label>
+            <br />
+            <h3>Vowel Check</h3>
+            <asp:Label ID="Label5" runat="server" Text="Enter a character: "></asp:Label>
+            <asp:TextBox ID="TextBox5" runat="server" MaxLength="1"></asp:TextBox>
+            <asp:Button ID="Button5" runat="server" Text="Check Vowel" OnClick="Button5_Click" />
+            <br /><br />
+            <asp:Label ID="Label10" runat="server" Text=""></asp:Label>
+            <br /><br />
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Pract_1d
+{
+    public partial class Pract_1d : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            int a, b, c, i, n;
+            a = 0;
+            b = 1;
+            Label6.Text = a.ToString() + b.ToString();
+            n = Convert.ToInt32(TextBox1.Text);
+            for (i = 1; i <= n; ++i)
+            {
+                c = a + b;
+                Label6.Text = Label1.Text + c.ToString();
+                a = b;
+                b = c;
+            }
+
+        }
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            int i, c = 0, j, num;
+            num = Convert.ToInt32(TextBox2.Text);
+            for (j = 1; j <= num; j++)
+            {
+                i = num % j;
+                if (i == 0)
+                {
+                    c = c + 1;
+                }
+            }
+            if (c == 2)
+                Label7.Text = "The given number is prime";
+            else
+                Label7.Text = "The given number is not prime";
+        }
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            long num, i, sum = 0;
+            num = Convert.ToInt32(TextBox3.Text);
+            while (num > 0)
+            {
+                i = num % 10;
+                sum = i + sum * 10;
+                num = num / 10;
+            }
+            Label8.Text = sum.ToString();
+        }
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            long num, i, sum = 0;
+            num = Convert.ToInt32(TextBox4.Text);
+            while (num > 0)
+            {
+                i = num % 10;
+                sum = i + sum;
+                num = num / 10;
+            }
+            Label9.Text = sum.ToString();
+        }
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            char c = Convert.ToChar(TextBox5.Text);
+            switch (c)
+            {
+                case 'a':
+                    Label10.Text = "a is vowel";
+                    break;
+                case 'e':
+                    Label10.Text = "e is vowel";
+                    break;
+                case 'i':
+                    Label10.Text = "i is vowel";
+                    break;
+                case 'o':
+                    Label10.Text = "o is vowel";
+                    break;
+                case 'u':
+                    Label10.Text = "u is vowel";
+                    break;
+                default:
+                    Label10.Text = "It is not a vowel";
+                    break;
+            }
+        }
+    }
+
+}

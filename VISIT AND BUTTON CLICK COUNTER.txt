@@ -1,0 +1,79 @@
+aspx-
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VisitCounter.aspx.cs" Inherits="VisitCounter.VisitCounter" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Click and Visit Counter</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Page Visit and Button Click Counter</h2>
+            
+            <!-- Label to show page visit count -->
+            <asp:Label ID="lbl_visitCount" runat="server" Text=""></asp:Label>
+            <br /><br />
+            
+            <!-- Button to count clicks -->
+            <asp:Button ID="Button1" runat="server" Text="Click me" OnClick="Button1_Click" />
+            <br /><br />
+            
+            <!-- Label to show click count -->
+            <asp:Label ID="lbl_clickCount" runat="server" Text=""></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace VisitCounter
+{
+    public partial class VisitCounter : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Check if the session value for "visitCount" exists
+            if (Session["visitCount"] == null)
+            {
+                // If it does not exist, initialize it to 1 (first visit)
+                Session["visitCount"] = 1;
+            }
+            else
+            {
+                // Increment the visit count if the session already exists
+                Session["visitCount"] = (int)Session["visitCount"] + 1;
+            }
+
+            // Display the visit count
+            lbl_visitCount.Text = "You have visited this page " + Session["visitCount"].ToString() + " times.";
+
+            // Initialize click count if it doesn't exist in the session
+            if (Session["clickCount"] == null)
+            {
+                Session["clickCount"] = 0;
+            }
+
+            // Display the click count
+            lbl_clickCount.Text = "You have clicked the button " + Session["clickCount"].ToString() + " times.";
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            // Increment the click count in session when the button is clicked
+            Session["clickCount"] = (int)Session["clickCount"] + 1;
+
+            // Update the label to reflect the new click count
+            lbl_clickCount.Text = "You have clicked the button " + Session["clickCount"].ToString() + " times.";
+        }
+    }
+}

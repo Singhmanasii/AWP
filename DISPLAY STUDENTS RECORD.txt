@@ -1,0 +1,97 @@
+aspx-
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pract_1c.aspx.cs" Inherits="Pract_1c.Pract_1c" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Student Information Form</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Student Information Form</h2>
+            
+            <!-- Input fields for Student ID, Name, and Course Name -->
+            <asp:Label ID="lbl_n1" runat="server" Text="Student Id:"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br /><br />
+            
+            <asp:Label ID="lbl_n2" runat="server" Text="Student Name:"></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <br /><br />
+            
+            <asp:Label ID="lbl_n3" runat="server" Text="Course Name:"></asp:Label>
+            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <br /><br />
+            
+            <!-- Calendar for selecting the date of birth -->
+            <asp:Label ID="lbl_n4" runat="server" Text="Date of Birth:"></asp:Label>
+            <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+            <br /><br />
+            
+            <!-- Buttons to submit or clear the form -->
+            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" Text="Clear" OnClick="Button2_Click" />
+            <br /><br />
+            
+            <!-- Labels to display the student's information -->
+            <asp:Label ID="lbl_n5" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n6" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n7" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n8" runat="server" Text=""></asp:Label>
+            <br />
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Pract_1c
+{
+    public partial class Pract_1c : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            lbl_n5.Text = "Student Id :" + TextBox1.Text;
+            lbl_n6.Text = "Student Name :" + TextBox2.Text;
+            lbl_n7.Text = "Course Name :" + TextBox3.Text;
+            lbl_n8.Text = "Date Of Birth :" + Calendar1.SelectedDate.ToShortDateString();
+
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            lbl_n1.Text = "";
+            lbl_n2.Text = "";
+            lbl_n3.Text = "";
+            lbl_n4.Text = "";
+            lbl_n5.Text = "";
+            lbl_n6.Text = "";
+            lbl_n7.Text = "";
+            lbl_n8.Text = "";
+            TextBox1.Text = "";
+            TextBox2.Text = "";
+            TextBox3.Text = "";
+            Calendar1.SelectedDates.Clear();
+
+
+        }
+    }
+}

@@ -1,0 +1,70 @@
+aspx-
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pract2c.aspx.cs" Inherits="Pract2c.Pract2c" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Temperature Conversion</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Temperature Conversion</h2>
+            
+            <!-- Celsius to Fahrenheit Conversion -->
+            <h3>Celsius to Fahrenheit</h3>
+            <asp:Label ID="Label1" runat="server" Text="Enter Temperature in Celsius:"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Button ID="Button1" runat="server" Text="Convert to Fahrenheit" OnClick="Button1_Click" />
+            <br /><br />
+            <asp:Label ID="lbl_n2" runat="server" Text=""></asp:Label>
+            <br /><br />
+
+            <!-- Fahrenheit to Celsius Conversion -->
+            <h3>Fahrenheit to Celsius</h3>
+            <asp:Label ID="Label2" runat="server" Text="Enter Temperature in Fahrenheit:"></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:Button ID="Button2" runat="server" Text="Convert to Celsius" OnClick="Button2_Click" />
+            <br /><br />
+            <asp:Label ID="lbl_n4" runat="server" Text=""></asp:Label>
+            <br /><br />
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Pract2c
+{
+    public partial class Pract2c : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            double T = Convert.ToDouble(TextBox1.Text);
+            T = ((9.0 / 5.0) * T) + 32;
+            lbl_n2.Text = T.ToString() + "F";
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            double T = Convert.ToDouble(TextBox2.Text);
+            T = (T - 32) * 5 / 9;
+            lbl_n4.Text = T.ToString() + "C";
+
+        }
+    }
+}

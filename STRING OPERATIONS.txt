@@ -1,0 +1,104 @@
+aspx-
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pract1b.aspx.cs" Inherits="pract1b.pract1b" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>String Manipulation Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>String Manipulation Example</h2>
+            
+            <!-- Input for the string -->
+            <asp:Label ID="Label1" runat="server" Text="Enter a string:"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br /><br />
+            
+            <!-- Button to trigger the string manipulations -->
+            <asp:Button ID="Button1" runat="server" Text="Process String" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" Text="Clear" OnClick="Button2_Click" />
+            <br /><br />
+            
+            <!-- Labels for displaying the output of string manipulations -->
+            <asp:Label ID="lbl_n1" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n2" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n3" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n4" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n5" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n6" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n7" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n8" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n9" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Label ID="lbl_n10" runat="server" Text=""></asp:Label>
+            <br />
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs -
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace pract1b
+{
+    public partial class pract1b : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string str = TextBox1.Text;
+            lbl_n1.Text = "String Length:" + str.Length;
+            lbl_n2.Text = "Substring:" + str.Substring(2, 4);
+            lbl_n3.Text = "upper string:" + str.ToUpper();
+            lbl_n4.Text = "lower string:" + str.ToLower();
+            string r = "";
+            for (int i = str.Length - 1; i >= 0; i--)
+            {
+                r = r + str[i];
+            }
+            lbl_n5.Text = "Reverse string:" + r.ToString();
+            lbl_n6.Text = "Replace 's' by 't' in String: " + str.Replace('s', 't');
+            lbl_n7.Text = "Insert 'u' in String: " + str.Insert(3, "u");
+            lbl_n8.Text = "Remove String:" + str.Remove(4);
+            lbl_n9.Text = "Index of String:" + str.IndexOf('e');
+            lbl_n10.Text = "Index of String:" + str.IndexOf('e');
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            TextBox1.Text = "";
+            lbl_n1.Text = "";
+            lbl_n2.Text = "";
+            lbl_n3.Text = "";
+            lbl_n4.Text = "";
+            lbl_n5.Text = "";
+            lbl_n6.Text = "";
+            lbl_n7.Text = "";
+            lbl_n8.Text = "";
+            lbl_n9.Text = "";
+            lbl_n10.Text = "";
+        }
+    }
+}
