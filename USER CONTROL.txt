@@ -1,6 +1,7 @@
-aspx -
+aspx-
+
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="practical_4c.aspx.cs" Inherits="practical_4c.practical_4c" %>
-<%@ Register TagPrefix="stfooter" TagName="footer" Src="~/practical_4c.ascx" %>
+<%@ Register TagPrefix="stfooter" TagName="footer" Src="~/WebUserControl1.ascx" %>
 
 <!DOCTYPE html>
 
@@ -16,14 +17,35 @@ aspx -
             <br />
         </div>
         <!-- Footer User Control -->
-        <stfooter:footer ID="practical_4c" runat="server" />
+        <stfooter:footer ID="WebUserControl1" runat="server" />
     </form>
 </body>
 </html>
 
+aspx.cs -
 
-ascx-
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="practical_4c.ascx.cs" Inherits="practical_4c.practical_4c" %>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace practical_4c
+{
+    public partial class practical_4c : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+
+ascx -
+(WEB USER CONTROL (FOOTER))-
+
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WebUserControl1.ascx.cs" Inherits="practical_4c.WebUserControl1" %>
 
 <table>
     <tr>
@@ -31,37 +53,56 @@ ascx-
     </tr>
 </table>
 
-web.config
+ascx.cs-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace practical_4c
+{
+    public partial class WebUserControl1 : System.Web.UI.UserControl
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+
+web.config-
+
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   For more information on how to configure your ASP.NET application, please visit
   https://go.microsoft.com/fwlink/?LinkId=169433
 -->
 <configuration>
-  <system.web>
-    <compilation debug="true" targetFramework="4.7.2" />
-    <httpRuntime targetFramework="4.7.2" />
-  </system.web>
-  <system.codedom>
-    <compilers>
-      <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701" />
-      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" />
-    </compilers>
-  </system.codedom>
-  
-  <!-- Add default document settings -->
-  <system.webServer>
-    <defaultDocument enabled="true">
-      <files>
-        <!-- Add your ASPX file as the default document -->
-        <add value="practical_4c.aspx" />
-      </files>
-    </defaultDocument>
-    
-    <!-- Enable directory browsing (optional) -->
-    <directoryBrowse enabled="true" />
-  </system.webServer>
-  
-</configuration>
+	<system.web>
+		<compilation debug="true" targetFramework="4.7.2" />
+		<httpRuntime targetFramework="4.7.2" />
+	</system.web>
+	<system.codedom>
+		<compilers>
+			<compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701" />
+			<compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" />
+		</compilers>
+	</system.codedom>
 
-(keep both cs pages as it is)
+	<!-- Add default document settings -->
+	<system.webServer>
+		<defaultDocument enabled="true">
+			<files>
+				<!-- Add your ASPX file as the default document -->
+				<add value="practical_4c.aspx" />
+			</files>
+		</defaultDocument>
+
+		<!-- Enable directory browsing (optional) -->
+		<directoryBrowse enabled="true" />
+	</system.webServer>
+
+</configuration>
