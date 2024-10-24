@@ -1,0 +1,85 @@
+aspx-
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="furniture.aspx.cs" Inherits="furniture.furniture" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Furniture Information</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Furniture List</h2>
+            <asp:ListBox ID="lstFurniture" runat="server" Height="100px" Width="200px"></asp:ListBox>
+            <br />
+            <asp:Button ID="btnMoreInfo" runat="server" Text="More Information" OnClick="btnMoreInfo_Click" />
+            <br />
+            <asp:Label ID="lblDetails" runat="server" Text="" Width="300px" ForeColor="Blue"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+aspx.cs-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace furniture
+{
+    public partial class furniture : System.Web.UI.Page
+    {
+        public class Furniture
+        {
+            public string Name { get; set; }
+            public string Manufacturer { get; set; }
+            public decimal Cost { get; set; }
+            public override string ToString() => Name;
+        }
+
+        private List<Furniture> GetFurnitureList()
+        {
+            if (Session["FurnitureList"] == null)
+            {
+                List<Furniture> furnitureList = new List<Furniture>
+            {
+                new Furniture { Name = "Chair", Manufacturer = "IKEA", Cost = 49.99m },
+                new Furniture { Name = "Table", Manufacturer = "Ashley", Cost = 199.99m },
+                new Furniture { Name = "Sofa", Manufacturer = "La-Z-Boy", Cost = 899.99m }
+            };
+                Session["FurnitureList"] = furnitureList;
+            }
+            return (List<Furniture>)Session["FurnitureList"];
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                lstFurniture.DataSource = GetFurnitureList();
+                lstFurniture.DataBind();
+            }
+        }
+
+        protected void btnMoreInfo_Click(object sender, EventArgs e)
+        {
+            if (lstFurniture.SelectedItem != null)
+            {
+                var furnitureList = GetFurnitureList();
+                var selectedFurniture = furnitureList[lstFurniture.SelectedIndex];
+                lblDetails.Text = $"Name: {selectedFurniture.Name}<br />" +
+                                  $"Manufacturer: {selectedFurniture.Manufacturer}<br />" +
+                                  $"Cost: ${selectedFurniture.Cost}";
+            }
+            else
+            {
+                lblDetails.Text = "Please select a furniture item.";
+            }
+        }
+    }
+}
